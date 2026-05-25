@@ -12,9 +12,7 @@ LaTeX language with modern tree-sitter grammar and legacy TextMate grammar.
 
 To install `language-latex-plus` search for [language-latex-plus](https://web.pulsar-edit.dev/packages/language-latex-plus) in the Install pane of the Pulsar settings or run `ppm install language-latex-plus`. Alternatively, you can run `ppm install asiloisad/pulsar-language-latex-plus` to install a package directly from the GitHub repository.
 
-## Grammars
-
-### Tree-sitter (modern)
+## Tree-sitter (modern)
 
 Based on [tree-sitter-latex](https://github.com/latex-lsp/tree-sitter-latex). Used by default when Pulsar's modern tree-sitter parser is enabled.
 
@@ -25,7 +23,7 @@ Provides:
 - Symbol navigation for sections, labels, and command definitions
 - Hyperlink and TODO detection in comments
 
-### TextMate (legacy)
+## TextMate (legacy)
 
 Derived from the [TextMate LaTeX bundle](https://github.com/textmate/latex.tmbundle). Used as fallback when tree-sitter is disabled.
 
