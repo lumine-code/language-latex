@@ -1,5 +1,8 @@
 'scopeName': 'text.log.latex'
 'name': 'LaTeX Log'
+'fileTypes': [
+  'log'
+]
 'firstLineMatch': 'This is (e-p|e-up|Lua|pdf|Xe)?TeXk?, Version '
 'patterns': [
   {
