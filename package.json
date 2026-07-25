@@ -1,7 +1,7 @@
 {
   "name": "language-latex",
   "author": "lumine-code",
-  "description": "LaTeX language with modern tree-sitter grammar and legacy TextMate grammar",
+  "description": "LaTeX language support with tree-sitter and TextMate grammars.",
   "repository": "https://github.com/lumine-code/language-latex",
   "bugs": {
     "url": "https://github.com/lumine-code/language-latex/issues"

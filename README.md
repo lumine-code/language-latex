@@ -1,6 +1,6 @@
 # language-latex
 
-LaTeX language with modern tree-sitter grammar and legacy TextMate grammar.
+LaTeX language support with tree-sitter and TextMate grammars.
 
 ## Features
 
