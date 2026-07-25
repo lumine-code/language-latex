@@ -1,0 +1,25 @@
+{
+  ".text.tex.latex": {
+    "editor": {
+      "commentStart": "% ",
+      "softWrap": true,
+      "increaseIndentPattern": "^\\s*\\\\begin\\{(?!document).*\\}",
+      "decreaseIndentPattern": "^\\s*\\\\end(\\{(?!document).*\\})?$",
+      "completions": [
+        "corollary",
+        "definition",
+        "description",
+        "enumerate",
+        "equation",
+        "itemize",
+        "lemma",
+        "proof",
+        "proposition",
+        "verbatim"
+      ]
+    },
+    "autocomplete": {
+      "extraWordCharacters": "\\"
+    }
+  }
+}

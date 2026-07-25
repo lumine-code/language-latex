@@ -1,19 +1,28 @@
 {
-  "name": "language-latex-plus",
+  "name": "language-latex",
+  "author": "lumine-code",
   "description": "LaTeX language with modern tree-sitter grammar and legacy TextMate grammar",
-  "version": "1.0.5",
-  "license": "MIT",
-  "engines": {
-    "atom": ">=1.100.0 <2.0.0",
-    "node": ">=12"
+  "repository": "https://github.com/lumine-code/language-latex",
+  "bugs": {
+    "url": "https://github.com/lumine-code/language-latex/issues"
   },
-  "main": "lib/main",
   "keywords": [
     "tree-sitter",
     "LaTeX",
     "language"
   ],
-  "repository": "https://github.com/asiloisad/pulsar-language-latex-plus",
+  "version": "2.0.0",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.100.0 <2.0.0"
+  },
+  "main": "lib/main",
+  "scripts": {
+    "test": "cd ../lumine && npm run test:only -- ../language-latex/spec",
+    "lint": "eslint . --max-warnings 0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
   "consumedServices": {
     "hyperlink.injection": {
       "versions": {
@@ -25,5 +34,13 @@
         "0.1.0": "consumeTodoInjection"
       }
     }
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.8.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-n": "^18.2.2",
+    "globals": "^17.7.0",
+    "prettier": "^3.9.6"
   }
 }

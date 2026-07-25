@@ -1,0 +1,20 @@
+{
+  "name": "LaTeX",
+  "scopeName": "text.tex.latex",
+  "type": "modern-tree-sitter",
+  "parser": "tree-sitter-latex",
+  "injectionRegex": "^(la)?tex$",
+  "firstLineRegex": ["\\\\document(class|style)"],
+  "fileTypes": ["tex", "ltx", "sty", "cls", "dtx", "ins", "tikz", "bbx", "cbx", "lco"],
+  "comments": {
+    "start": "% "
+  },
+  "treeSitter": {
+    "parserSource": "github:latex-lsp/tree-sitter-latex#7e0ecdc02926c7b9b2e0c76003d4fe7b0944f957",
+    "grammar": "ts/tree-sitter-latex.wasm",
+    "highlightsQuery": "ts/highlights.scm",
+    "foldsQuery": "ts/folds.scm",
+    "indentsQuery": "ts/indents.scm",
+    "tagsQuery": "ts/tags.scm"
+  }
+}

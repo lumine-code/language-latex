@@ -1,39 +1,36 @@
-# language-latex-plus
+# language-latex
 
 LaTeX language with modern tree-sitter grammar and legacy TextMate grammar.
 
 ## Features
 
-- **Tree-sitter grammar**: LaTeX with syntax highlighting, code folding, indentation, and symbol navigation.
-- **TextMate grammar**: fallback for LaTeX, TeX, BibTeX, Beamer, Memoir, and log files.
-- **166 snippets**: for common LaTeX constructs (environments, sections, math, etc.).
+- **Grammars**: provides both Tree-sitter and TextMate grammars.
+- **Syntax highlighting**: commands, environments, math, sections, citations, labels and more.
+- **Code folding**: folds sections, environments, equations and comments.
+- **Auto-indentation**: indents inside environments and brace groups.
+- **Symbol navigation**: sections, labels and command definitions.
+- **Companion grammars**: TextMate grammars for TeX, BibTeX, Beamer, Memoir and LaTeX log files.
+- **Snippets**: 166 snippets for common LaTeX constructs (environments, sections, math, etc.).
 
 ## Installation
 
-To install `language-latex-plus` search for [language-latex-plus](https://web.pulsar-edit.dev/packages/language-latex-plus) in the Install pane of the Pulsar settings or run `ppm install language-latex-plus`. Alternatively, you can run `ppm install asiloisad/pulsar-language-latex-plus` to install a package directly from the GitHub repository.
+To install `language-latex` search for _language-latex_ in the Install pane of the Lumine settings or run `lumine --install lumine-code/language-latex`.
 
-## Tree-sitter (modern)
+## Usage
 
-Based on [tree-sitter-latex](https://github.com/latex-lsp/tree-sitter-latex). Used by default when Pulsar's modern tree-sitter parser is enabled.
+The Tree-sitter grammar is based on [tree-sitter-latex](https://github.com/latex-lsp/tree-sitter-latex) and is used by default. The TextMate grammars are derived from the [TextMate LaTeX bundle](https://github.com/textmate/latex.tmbundle) and cover:
 
-Provides:
-- Accurate syntax highlighting for commands, environments, math, sections, citations, labels, and more
-- Code folding for sections, environments, equations, and comments
-- Auto-indentation inside environments and brace groups
-- Symbol navigation for sections, labels, and command definitions
-- Hyperlink and TODO detection in comments
-
-## TextMate (legacy)
-
-Derived from the [TextMate LaTeX bundle](https://github.com/textmate/latex.tmbundle). Used as fallback when tree-sitter is disabled.
-
-Includes grammars for:
 - LaTeX (`text.tex.latex`)
 - TeX (`text.tex`)
 - BibTeX (`text.bibtex`)
 - Beamer (`text.tex.latex.beamer`)
 - Memoir (`text.tex.latex.memoir`)
 - LaTeX log (`text.log.latex`)
+
+## Services
+
+- **hyperlink.injection** (`0.1.0`): consumed to detect hyperlinks inside LaTeX comments.
+- **todo.injection** (`0.1.0`): consumed to highlight TODO-style keywords inside LaTeX comments.
 
 ## Contributing
 
