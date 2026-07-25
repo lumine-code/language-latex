@@ -7,9 +7,12 @@
     "url": "https://github.com/lumine-code/language-latex/issues"
   },
   "keywords": [
-    "tree-sitter",
-    "LaTeX",
-    "language"
+    "bibtex",
+    "tikz",
+    "beamer",
+    "bib",
+    "typesetting",
+    "tree-sitter"
   ],
   "version": "1.0.0",
   "license": "MIT",
