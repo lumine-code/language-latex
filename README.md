@@ -29,8 +29,8 @@ The Tree-sitter grammar is based on [tree-sitter-latex](https://github.com/latex
 
 ## Services
 
-- **[hyperlink.injection](https://lumine-code.github.io/docs.html#services/hyperlink.injection)** (`^1.0.0`): consumed to detect hyperlinks inside LaTeX comments.
-- **[todo.injection](https://lumine-code.github.io/docs.html#services/todo.injection)** (`^1.0.0`): consumed to highlight TODO-style keywords inside LaTeX comments.
+- **hyperlink.injection** (`^1.0.0`): consumed to detect hyperlinks inside LaTeX comments.
+- **todo.injection** (`^1.0.0`): consumed to highlight TODO-style keywords inside LaTeX comments.
 
 ## Contributing
 
