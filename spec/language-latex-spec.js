@@ -53,4 +53,28 @@ describe("language-latex", () => {
     const scopes = tokens.flatMap((token) => token.scopes);
     expect(scopes.some((scope) => scope.includes("bibtex"))).toBe(true);
   });
+
+  // The per-grammar settings live in the `language` namespace; under the
+  // legacy `editor` one nothing reads them.
+  describe("scoped settings", () => {
+    it("soft wraps LaTeX documents", async () => {
+      const editor = await atom.workspace.open("document.tex");
+      expect(editor.getGrammar().scopeName).toBe("text.tex.latex");
+      expect(editor.isSoftWrapped()).toBe(true);
+    });
+
+    it("comments a line with a percent sign", async () => {
+      const editor = await atom.workspace.open("document.tex");
+      editor.setText("\\section{Intro}");
+      editor.toggleLineCommentsForBufferRows(0, 0);
+      expect(editor.lineTextForBufferRow(0)).toBe("% \\section{Intro}");
+    });
+
+    it("offers the environment completions", () => {
+      const completions = atom.config.get("language.completions", {
+        scope: [".text.tex.latex"],
+      });
+      expect(completions).toContain("itemize");
+    });
+  });
 });

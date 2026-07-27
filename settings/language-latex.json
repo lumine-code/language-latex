@@ -1,6 +1,6 @@
 {
   ".text.tex.latex": {
-    "editor": {
+    "language": {
       "commentStart": "% ",
       "softWrap": true,
       "increaseIndentPattern": "^\\s*\\\\begin\\{(?!document).*\\}",
