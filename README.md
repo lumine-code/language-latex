@@ -4,7 +4,7 @@ LaTeX language support with tree-sitter and TextMate grammars.
 
 ## Features
 
-- **Grammars**: provides both Tree-sitter and TextMate grammars.
+- **Grammars**: provides both Tree-sitter and TextMate grammars, built from [tree-sitter-latex](https://github.com/latex-lsp/tree-sitter-latex).
 - **Syntax highlighting**: commands, environments, math, sections, citations, labels and more.
 - **Code folding**: folds sections, environments, equations and comments.
 - **Auto-indentation**: indents inside environments and brace groups.
