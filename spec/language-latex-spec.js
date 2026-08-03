@@ -9,7 +9,7 @@ describe("language-latex", () => {
       .filter((grammar) => grammar.scopeName === "text.tex.latex");
     const types = grammars.map((grammar) => grammar.constructor.name).sort();
     expect(grammars.length).toBe(2);
-    expect(types).toContain("WASMTreeSitterGrammar");
+    expect(types).toContain("TreeSitterGrammar");
   });
 
   it("loads the companion TextMate grammars", () => {

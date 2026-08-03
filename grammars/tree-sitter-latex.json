@@ -1,7 +1,7 @@
 {
   "name": "LaTeX",
   "scopeName": "text.tex.latex",
-  "type": "modern-tree-sitter",
+  "type": "tree-sitter",
   "parser": "tree-sitter-latex",
   "injectionRegex": "^(la)?tex$",
   "firstLineRegex": ["\\\\document(class|style)"],
