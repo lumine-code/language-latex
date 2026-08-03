@@ -235,32 +235,32 @@
 (generic_environment
   (begin
     name: (curly_group_text
-      (text) @_env_name)
-    (#eq? @_env_name "frame"))
+      (text) @_IGNORE_.env_name)
+    (#eq? @_IGNORE_.env_name "frame"))
   .
   (curly_group
     (_) @markup.heading.frame.latex))
 
 ((generic_command
-  command: (command_name) @_name
+  command: (command_name) @_IGNORE_.name
   arg: (curly_group
     (_) @markup.heading.frame.latex))
-  (#eq? @_name "\\frametitle"))
+  (#eq? @_IGNORE_.name "\\frametitle"))
 
 ; TEXT FORMATTING
 ; ===============
 
 ((generic_command
-  command: (command_name) @_name
+  command: (command_name) @_IGNORE_.name
   arg: (curly_group
     (_) @markup.italic.latex))
-  (#match? @_name "^\\\\(emph|textit|mathit)$"))
+  (#match? @_IGNORE_.name "^\\\\(emph|textit|mathit)$"))
 
 ((generic_command
-  command: (command_name) @_name
+  command: (command_name) @_IGNORE_.name
   arg: (curly_group
     (_) @markup.bold.latex))
-  (#match? @_name "^\\\\(textbf|mathbf)$"))
+  (#match? @_IGNORE_.name "^\\\\(textbf|mathbf)$"))
 
 ; CONDITIONALS
 ; =============
