@@ -9,7 +9,7 @@ LaTeX language support with tree-sitter and TextMate grammars.
 - **Code folding**: folds sections, environments, equations and comments.
 - **Auto-indentation**: indents inside environments and brace groups.
 - **Symbol navigation**: sections, labels and command definitions.
-- **Companion grammars**: TextMate grammars for TeX, BibTeX, Beamer, Memoir and LaTeX log files.
+- **Companion grammars**: TextMate grammars for TeX, Beamer, Memoir and LaTeX log files.
 - **Snippets**: 166 snippets for common LaTeX constructs (environments, sections, math, etc.).
 
 ## Installation
@@ -22,7 +22,6 @@ The Tree-sitter grammar is based on [tree-sitter-latex](https://github.com/latex
 
 - LaTeX (`text.tex.latex`)
 - TeX (`text.tex`)
-- BibTeX (`text.bibtex`)
 - Beamer (`text.tex.latex.beamer`)
 - Memoir (`text.tex.latex.memoir`)
 - LaTeX log (`text.log.latex`)
