@@ -18,6 +18,13 @@
     "lumine": "^1.0.0"
   },
   "main": "lib/main",
+  "files": [
+    "grammars",
+    "lib",
+    "settings",
+    "snippets",
+    "spec"
+  ],
   "scripts": {
     "test": "lumine --test spec",
     "lint": "eslint . --max-warnings 0",
