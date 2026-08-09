@@ -7,12 +7,12 @@ const path = require("path");
 
 describe("LaTeX sample fixtures", () => {
   beforeEach(async () => {
-    await atom.packages.activatePackage("language-latex");
-    atom.config.set("language.useTreeSitterParsers", true);
+    await lumine.packages.activatePackage("language-latex");
+    lumine.config.set("language.useTreeSitterParsers", true);
   });
 
   it("parses sample.tex without error", async () => {
-    const editor = await atom.workspace.open(path.join(__dirname, "fixtures", "sample.tex"));
+    const editor = await lumine.workspace.open(path.join(__dirname, "fixtures", "sample.tex"));
     const languageMode = editor.getBuffer().getLanguageMode();
     await languageMode.ready;
 

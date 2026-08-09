@@ -1,10 +1,10 @@
 describe("language-latex", () => {
   beforeEach(async () => {
-    await atom.packages.activatePackage("language-latex");
+    await lumine.packages.activatePackage("language-latex");
   });
 
   it("loads the LaTeX grammars", () => {
-    const grammars = atom.grammars
+    const grammars = lumine.grammars
       .getGrammars({ includeTreeSitter: true })
       .filter((grammar) => grammar.scopeName === "text.tex.latex");
     const types = grammars.map((grammar) => grammar.constructor.name).sort();
@@ -19,18 +19,18 @@ describe("language-latex", () => {
       "text.tex.latex.memoir",
       "text.log.latex",
     ]) {
-      const grammar = atom.grammars.grammarForScopeName(scopeName);
+      const grammar = lumine.grammars.grammarForScopeName(scopeName);
       expect(grammar).toBeTruthy();
     }
   });
 
   it("selects a LaTeX grammar for .tex files", () => {
-    const grammar = atom.grammars.selectGrammar("document.tex", "");
+    const grammar = lumine.grammars.selectGrammar("document.tex", "");
     expect(grammar.scopeName).toBe("text.tex.latex");
   });
 
   it("uses the tree-sitter grammar in an editor", async () => {
-    const editor = await atom.workspace.open("document.tex");
+    const editor = await lumine.workspace.open("document.tex");
     editor.setText("\\documentclass{article}\n\\begin{document}\nHello\n\\end{document}\n");
     const languageMode = editor.getBuffer().getLanguageMode();
     expect(languageMode.grammar.scopeName).toBe("text.tex.latex");
@@ -45,20 +45,20 @@ describe("language-latex", () => {
   // legacy `editor` one nothing reads them.
   describe("scoped settings", () => {
     it("soft wraps LaTeX documents", async () => {
-      const editor = await atom.workspace.open("document.tex");
+      const editor = await lumine.workspace.open("document.tex");
       expect(editor.getGrammar().scopeName).toBe("text.tex.latex");
       expect(editor.isSoftWrapped()).toBe(true);
     });
 
     it("comments a line with a percent sign", async () => {
-      const editor = await atom.workspace.open("document.tex");
+      const editor = await lumine.workspace.open("document.tex");
       editor.setText("\\section{Intro}");
       editor.toggleLineCommentsForBufferRows(0, 0);
       expect(editor.lineTextForBufferRow(0)).toBe("% \\section{Intro}");
     });
 
     it("offers the environment completions", () => {
-      const completions = atom.config.get("language.completions", {
+      const completions = lumine.config.get("language.completions", {
         scope: [".text.tex.latex"],
       });
       expect(completions).toContain("itemize");
