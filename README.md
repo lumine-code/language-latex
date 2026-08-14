@@ -14,7 +14,7 @@ LaTeX language support with tree-sitter and TextMate grammars.
 
 ## Installation
 
-To install `language-latex` search for _language-latex_ in the Install pane of the Lumine settings or run `lumine --install lumine-code/language-latex`.
+To install `language-latex` search for it in the Install pane of the Lumine settings, or run the command `lumine --install lumine-code/language-latex`.
 
 ## Usage
 
@@ -28,8 +28,8 @@ The Tree-sitter grammar is based on [tree-sitter-latex](https://github.com/latex
 
 ## Services
 
-- **hyperlink.injection** (`^1.0.0`): consumed to detect hyperlinks inside LaTeX comments.
-- **todo.injection** (`^1.0.0`): consumed to highlight TODO-style keywords inside LaTeX comments.
+- `hyperlink.injection`: consumed to detect hyperlinks inside LaTeX comments.
+- `todo.injection`: consumed to highlight TODO-style keywords inside LaTeX comments.
 
 ## Contributing
 
