@@ -1,8 +1,10 @@
 {
   ".text.tex.latex": {
-    "language": {
+    "autocomplete": {
+      "extraWordCharacters": "\\"
+    },
+    "editor": {
       "commentStart": "% ",
-      "softWrap": true,
       "increaseIndentPattern": "^\\s*\\\\begin\\{(?!document).*\\}",
       "decreaseIndentPattern": "^\\s*\\\\end(\\{(?!document).*\\})?$",
       "completions": [
@@ -16,10 +18,8 @@
         "proof",
         "proposition",
         "verbatim"
-      ]
-    },
-    "autocomplete": {
-      "extraWordCharacters": "\\"
+      ],
+      "softWrap": true
     }
   }
 }

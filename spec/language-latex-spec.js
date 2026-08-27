@@ -41,7 +41,7 @@ describe("language-latex", () => {
     }
   });
 
-  // The per-grammar settings live in the `language` namespace; under the
+  // The per-grammar settings live in the `grammar` namespace; under the
   // legacy `editor` one nothing reads them.
   describe("scoped settings", () => {
     it("soft wraps LaTeX documents", async () => {
@@ -58,7 +58,7 @@ describe("language-latex", () => {
     });
 
     it("offers the environment completions", () => {
-      const completions = lumine.config.get("language.completions", {
+      const completions = lumine.config.get("editor.completions", {
         scope: [".text.tex.latex"],
       });
       expect(completions).toContain("itemize");
