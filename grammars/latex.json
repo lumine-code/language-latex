@@ -11,7 +11,7 @@
   },
   "treeSitter": {
     "parserSource": "github:latex-lsp/tree-sitter-latex#7e0ecdc02926c7b9b2e0c76003d4fe7b0944f957",
-    "wasmBuildTool": "tree-sitter-cli#v0.26.13",
+    "wasmBuildTool": "tree-sitter-cli#v0.27.0",
     "grammar": "latex.wasm",
     "highlightsQuery": "latex-highlights.scm",
     "foldsQuery": "latex-folds.scm",
