@@ -1,27 +1,36 @@
 describe("language-latex", () => {
   beforeEach(async () => {
     await lumine.packages.activatePackage("language-latex");
+    await lumine.packages.activatePackage("language-log");
   });
 
   it("loads the LaTeX grammars", () => {
     const grammars = lumine.grammars
-      .getGrammars({ includeTreeSitter: true })
+      .getGrammars()
       .filter((grammar) => grammar.scopeName === "text.tex.latex");
     const types = grammars.map((grammar) => grammar.constructor.name).sort();
-    expect(grammars.length).toBe(2);
+    expect(grammars.length).toBe(1);
     expect(types).toContain("TreeSitterGrammar");
   });
 
-  it("loads the companion TextMate grammars", () => {
-    for (const scopeName of [
-      "text.tex",
-      "text.tex.latex.beamer",
-      "text.tex.latex.memoir",
-      "text.log.latex",
-    ]) {
+  it("loads the companion grammars", () => {
+    for (const scopeName of ["text.log.latex"]) {
       const grammar = lumine.grammars.grammarForScopeName(scopeName);
       expect(grammar).toBeTruthy();
     }
+  });
+
+  it("uses Tree-sitter for LaTeX logs", async () => {
+    const editor = await lumine.workspace.open("document.log");
+    editor.setText("This is pdfTeX, Version 3.141592653\nWarning: overfull box\n");
+    lumine.grammars.autoAssignLanguageMode(editor.getBuffer());
+    await editor.languageMode.ready;
+
+    expect(editor.getGrammar().scopeName).toBe("text.log.latex");
+    expect(editor.getGrammar().type).toBe("tree-sitter");
+    expect(editor.scopeDescriptorForBufferPosition([1, 2]).getScopesArray()).toContain(
+      "invalid.deprecated.log.latex",
+    );
   });
 
   it("selects a LaTeX grammar for .tex files", () => {

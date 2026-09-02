@@ -5,8 +5,6 @@
     },
     "editor": {
       "commentStart": "% ",
-      "increaseIndentPattern": "^\\s*\\\\begin\\{(?!document).*\\}",
-      "decreaseIndentPattern": "^\\s*\\\\end(\\{(?!document).*\\})?$",
       "completions": [
         "corollary",
         "definition",

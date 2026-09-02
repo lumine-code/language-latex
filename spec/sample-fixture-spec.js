@@ -8,7 +8,6 @@ const path = require("path");
 describe("LaTeX sample fixtures", () => {
   beforeEach(async () => {
     await lumine.packages.activatePackage("language-latex");
-    lumine.config.set("editor.useTreeSitterParsers", true);
   });
 
   it("parses sample.tex without error", async () => {

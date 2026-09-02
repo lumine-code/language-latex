@@ -1,15 +1,15 @@
 # language-latex
 
-LaTeX language support with tree-sitter and TextMate grammars.
+LaTeX language support.
 
 ## Features
 
-- **Grammars**: provides both Tree-sitter and TextMate grammars, built from [tree-sitter-latex](https://github.com/latex-lsp/tree-sitter-latex).
+- **Grammars**: provides a Tree-sitter grammar built from [tree-sitter-latex](https://github.com/latex-lsp/tree-sitter-latex).
 - **Syntax highlighting**: commands, environments, math, sections, citations, labels and more.
 - **Code folding**: folds sections, environments, equations and comments.
 - **Auto-indentation**: indents inside environments and brace groups.
 - **Symbol navigation**: sections, labels and command definitions.
-- **Companion grammars**: TextMate grammars for TeX, Beamer, Memoir and LaTeX log files.
+- **Log grammar**: the central `language-log` package highlights LaTeX engine diagnostics and common warning levels.
 - **Snippets**: 166 snippets for common LaTeX constructs (environments, sections, math, etc.).
 
 ## Installation
@@ -18,13 +18,7 @@ To install `language-latex` search for it in the Install pane of the Lumine sett
 
 ## Usage
 
-The Tree-sitter grammar is based on [tree-sitter-latex](https://github.com/latex-lsp/tree-sitter-latex) and is used by default. The TextMate grammars are derived from the [TextMate LaTeX bundle](https://github.com/textmate/latex.tmbundle) and cover:
-
-- LaTeX (`text.tex.latex`)
-- TeX (`text.tex`)
-- Beamer (`text.tex.latex.beamer`)
-- Memoir (`text.tex.latex.memoir`)
-- LaTeX log (`text.log.latex`)
+This package handles LaTeX and TeX source files. The central `language-log` package supplies the `text.log.latex` grammar for compiler logs.
 
 ## Services
 
