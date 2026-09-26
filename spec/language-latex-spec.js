@@ -53,7 +53,7 @@ describe("language-latex", () => {
   it("highlights specialized counter commands", async () => {
     const editor = await lumine.workspace.open("document.tex");
     const commands = [
-      "\\newcounter{example}",
+      "\\newcounter{example}[chapter]",
       "\\counterwithin*{figure}{chapter}",
       "\\counterwithout{figure}{chapter}",
       "\\value{figure}",
@@ -69,6 +69,75 @@ describe("language-latex", () => {
       const scopes = editor.scopeDescriptorForBufferPosition([row, 1]).getScopesArray();
       expect(scopes).toContain("support.function.latex");
     }
+
+    expect(editor.scopeDescriptorForBufferPosition([0, 12]).getScopesArray()).toContain(
+      "variable.other.counter.latex",
+    );
+    expect(editor.scopeDescriptorForBufferPosition([0, 21]).getScopesArray()).toContain(
+      "variable.other.counter.latex",
+    );
+    expect(editor.scopeDescriptorForBufferPosition([4, 25]).getScopesArray()).toContain(
+      "constant.numeric.latex",
+    );
+  });
+
+  it("highlights the remaining parser-specific commands", async () => {
+    const editor = await lumine.workspace.open("document.tex");
+    const cases = [
+      {
+        text: "\\definecolorset{rgb}{prefix}{suffix}{red,1,0,0}",
+        nodeType: "color_set_definition",
+        scope: "keyword.control.definition.latex",
+      },
+      { text: "\\todo{fix}", nodeType: "todo", scope: "support.function.latex" },
+      { text: "\\FXtodo[inline]{fix}", nodeType: "todo", scope: "support.function.latex" },
+      {
+        text: "\\replaced{new}{old}",
+        nodeType: "changes_replaced",
+        scope: "support.function.latex",
+      },
+      {
+        text: "\\item* Starred item",
+        nodeType: "enum_item",
+        scope: "punctuation.special.item.latex",
+      },
+    ];
+    editor.setText(cases.map(({ text }) => text).join("\n"));
+    const languageMode = editor.getBuffer().getLanguageMode();
+    await languageMode.ready;
+
+    for (let row = 0; row < cases.length; row++) {
+      const { nodeType, scope } = cases[row];
+      expect(languageMode.tree.rootNode.descendantsOfType(nodeType).length).toBeGreaterThan(0);
+      expect(editor.scopeDescriptorForBufferPosition([row, 1]).getScopesArray()).toContain(scope);
+    }
+  });
+
+  it("highlights raw environments and minted language names", async () => {
+    const editor = await lumine.workspace.open("document.tex");
+    editor.setText(
+      [
+        "\\begin{verbatim}",
+        "raw { text }",
+        "\\end{verbatim}",
+        "\\begin{lstlisting}",
+        "const value = 1;",
+        "\\end{lstlisting}",
+        "\\begin{minted}{python}",
+        'print("value")',
+        "\\end{minted}",
+      ].join("\n"),
+    );
+    await editor.getBuffer().getLanguageMode().ready;
+
+    for (const row of [1, 4, 7]) {
+      expect(editor.scopeDescriptorForBufferPosition([row, 1]).getScopesArray()).toContain(
+        "markup.raw.block.latex",
+      );
+    }
+    expect(editor.scopeDescriptorForBufferPosition([6, 16]).getScopesArray()).toContain(
+      "storage.modifier.language.python.latex",
+    );
   });
 
   // The per-grammar settings live in the `grammar` namespace; under the

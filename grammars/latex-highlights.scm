@@ -10,6 +10,12 @@
 (text_mode
   command: _ @support.function.latex)
 
+(todo
+  command: _ @support.function.latex)
+
+(changes_replaced
+  command: _ @support.function.latex)
+
 ; Counter commands have literal command nodes instead of `command_name` nodes.
 (counter_declaration
   command: _ @support.function.latex)
@@ -49,6 +55,15 @@
 
 (brack_group_argc) @variable.parameter.latex
 
+(curly_group_word
+  (word) @variable.other.counter.latex)
+
+(brack_group_word
+  (word) @variable.other.counter.latex)
+
+(curly_group_value
+  (value_literal) @constant.numeric.latex)
+
 ; OPERATORS
 ; =========
 
@@ -59,7 +74,8 @@
   "^"
 ] @keyword.operator.latex
 
-"\\item" @punctuation.special.item.latex
+(enum_item
+  command: _ @punctuation.special.item.latex)
 
 ; DELIMITERS
 ; ==========
@@ -184,6 +200,9 @@
   command: _ @keyword.control.definition.latex
   name: (curly_group_text
     (_) @constant.other.color.latex))
+
+(color_set_definition
+  command: _ @keyword.control.definition.latex)
 
 (color_reference
   command: _ @support.function.latex
@@ -349,6 +368,19 @@
 (tikz_library_import
   command: _ @keyword.control.import.latex
   paths: (curly_group_path_list) @string.other.path.latex)
+
+; RAW CONTENT
+; ===========
+
+(source_code) @markup.raw.block.latex
+
+(verbatim_environment
+  verbatim: (comment) @markup.raw.block.latex)
+
+(minted_environment
+  begin: (begin
+    language: (curly_group_text
+      (text) @storage.modifier.language._TEXT_.latex)))
 
 ; MATH
 ; ====
