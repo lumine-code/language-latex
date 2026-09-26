@@ -22,7 +22,7 @@ describe("language-latex", () => {
 
   it("uses Tree-sitter for LaTeX logs", async () => {
     const editor = await lumine.workspace.open("document.log");
-    editor.setText("This is pdfTeX, Version 3.141592653\nWarning: overfull box\n");
+    editor.setText("This is pdfTeX, Version 3.141592653\nOverfull \\hbox (1.0pt too wide)\n");
     lumine.grammars.autoAssignLanguageMode(editor.getBuffer());
     await editor.languageMode.ready;
 
