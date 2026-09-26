@@ -50,6 +50,27 @@ describe("language-latex", () => {
     }
   });
 
+  it("highlights specialized counter commands", async () => {
+    const editor = await lumine.workspace.open("document.tex");
+    const commands = [
+      "\\newcounter{example}",
+      "\\counterwithin*{figure}{chapter}",
+      "\\counterwithout{figure}{chapter}",
+      "\\value{figure}",
+      "\\setcounter{secnumdepth}{4}",
+      "\\addtocounter{section}{1}",
+      "\\stepcounter{section}",
+      "\\arabic{section}",
+    ];
+    editor.setText(commands.join("\n"));
+    await editor.getBuffer().getLanguageMode().ready;
+
+    for (let row = 0; row < commands.length; row++) {
+      const scopes = editor.scopeDescriptorForBufferPosition([row, 1]).getScopesArray();
+      expect(scopes).toContain("support.function.latex");
+    }
+  });
+
   // The per-grammar settings live in the `grammar` namespace; under the
   // legacy `editor` one nothing reads them.
   describe("scoped settings", () => {

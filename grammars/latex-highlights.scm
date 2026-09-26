@@ -10,6 +10,31 @@
 (text_mode
   command: _ @support.function.latex)
 
+; Counter commands have literal command nodes instead of `command_name` nodes.
+(counter_declaration
+  command: _ @support.function.latex)
+
+(counter_within_declaration
+  command: _ @support.function.latex)
+
+(counter_without_declaration
+  command: _ @support.function.latex)
+
+(counter_value
+  command: _ @support.function.latex)
+
+(counter_definition
+  command: _ @support.function.latex)
+
+(counter_addition
+  command: _ @support.function.latex)
+
+(counter_increment
+  command: _ @support.function.latex)
+
+(counter_typesetting
+  command: _ @support.function.latex)
+
 ; VARIABLES & PARAMETERS
 ; ======================
 
