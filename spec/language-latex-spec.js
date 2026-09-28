@@ -103,12 +103,13 @@ describe("language-latex", () => {
       },
     ];
     editor.setText(cases.map(({ text }) => text).join("\n"));
-    const languageMode = editor.getBuffer().getLanguageMode();
-    await languageMode.ready;
+    await editor.getBuffer().getLanguageMode().ready;
 
     for (let row = 0; row < cases.length; row++) {
       const { nodeType, scope } = cases[row];
-      expect(languageMode.tree.rootNode.descendantsOfType(nodeType).length).toBeGreaterThan(0);
+      expect(
+        editor.getSyntaxNodeAtBufferPosition([row, 1], (node) => node.type === nodeType),
+      ).not.toBeNull();
       expect(editor.scopeDescriptorForBufferPosition([row, 1]).getScopesArray()).toContain(scope);
     }
   });
