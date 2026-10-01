@@ -20,11 +20,6 @@ To install `language-latex` search for it in the Install pane of the Lumine sett
 
 This package handles LaTeX and TeX source files. The central `language-log` package supplies the `text.log.latex` grammar for compiler logs.
 
-## Services
-
-- `hyperlink.injection`: consumed to detect hyperlinks inside LaTeX comments.
-- `todo.injection`: consumed to highlight TODO-style keywords inside LaTeX comments.
-
 ## Contributing
 
 Got ideas to make this package better, found a bug, or want to help add new features? Just drop your thoughts on GitHub. Any feedback is welcome!

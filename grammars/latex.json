@@ -16,6 +16,7 @@
     "highlightsQuery": "latex-highlights.scm",
     "foldsQuery": "latex-folds.scm",
     "indentsQuery": "latex-indents.scm",
-    "tagsQuery": "latex-tags.scm"
+    "tagsQuery": "latex-tags.scm",
+    "injectionsQuery": "latex-injections.scm"
   }
 }

@@ -18,12 +18,12 @@
     "lumine": "^1.0.0"
   },
   "specPackages": [
-    "language-log"
+    "language-log",
+    "language-hyperlink",
+    "language-todo"
   ],
-  "main": "lib/main",
   "files": [
     "grammars",
-    "lib",
     "settings",
     "snippets",
     "spec"
@@ -33,18 +33,6 @@
     "lint": "eslint . --max-warnings 0",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
-  },
-  "consumedServices": {
-    "hyperlink.injection": {
-      "versions": {
-        "^1.0.0": "consumeHyperlinkInjection"
-      }
-    },
-    "todo.injection": {
-      "versions": {
-        "^1.0.0": "consumeTodoInjection"
-      }
-    }
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
