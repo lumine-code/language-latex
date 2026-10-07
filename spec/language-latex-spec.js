@@ -99,7 +99,7 @@ describe("language-latex", () => {
       {
         text: "\\item* Starred item",
         nodeType: "enum_item",
-        scope: "punctuation.special.item.latex",
+        scope: "support.function.latex",
       },
     ];
     editor.setText(cases.map(({ text }) => text).join("\n"));
@@ -111,6 +111,50 @@ describe("language-latex", () => {
         editor.getSyntaxNodeAtBufferPosition([row, 1], (node) => node.type === nodeType),
       ).not.toBeNull();
       expect(editor.scopeDescriptorForBufferPosition([row, 1]).getScopesArray()).toContain(scope);
+    }
+  });
+
+  it("highlights list commands without coloring their labels or text as commands", async () => {
+    const editor = await lumine.workspace.open("document.tex");
+    const items = [
+      "\\item współczynnik dostosowawczy:",
+      "\\item[Label] Labeled item",
+      "\\item* Starred item",
+      "\\item*[Label] Starred labeled item",
+    ];
+    editor.setText(
+      [
+        "\\begin{minipage}[t]{85mm}",
+        "\\begin{itemize}",
+        ...items,
+        "\\end{itemize}",
+        "\\end{minipage}",
+      ].join("\n"),
+    );
+    expect(await editor.whenGrammarSettled()).toBe(true);
+
+    for (let index = 0; index < items.length; index++) {
+      const row = index + 2;
+      const item = editor.getSyntaxNodeAtBufferPosition(
+        [row, 1],
+        (node) => node.type === "enum_item",
+      );
+      expect(item).not.toBeNull();
+      const command = item.childForFieldName("command");
+      for (
+        let column = command.startPosition.column;
+        column < command.endPosition.column;
+        column++
+      ) {
+        expect(editor.scopeDescriptorForBufferPosition([row, column]).getScopesArray()).toContain(
+          "support.function.latex",
+        );
+      }
+      for (let column = command.endPosition.column; column < items[index].length; column++) {
+        expect(
+          editor.scopeDescriptorForBufferPosition([row, column]).getScopesArray(),
+        ).not.toContain("support.function.latex");
+      }
     }
   });
 

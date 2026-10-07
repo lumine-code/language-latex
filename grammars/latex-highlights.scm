@@ -16,6 +16,10 @@
 (changes_replaced
   command: _ @support.function.latex)
 
+; List commands are literal nodes; use the same scope as other LaTeX macros.
+(enum_item
+  command: _ @support.function.latex)
+
 ; Counter commands have literal command nodes instead of `command_name` nodes.
 (counter_declaration
   command: _ @support.function.latex)
@@ -73,9 +77,6 @@
   "_"
   "^"
 ] @keyword.operator.latex
-
-(enum_item
-  command: _ @punctuation.special.item.latex)
 
 ; DELIMITERS
 ; ==========
