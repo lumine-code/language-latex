@@ -10,7 +10,7 @@ LaTeX language support.
 - **Auto-indentation**: indents inside environments and brace groups.
 - **Symbol navigation**: sections, labels and command definitions.
 - **Log grammar**: the central `language-log` package highlights LaTeX engine diagnostics and common warning levels.
-- **Snippets**: 166 snippets for common LaTeX constructs (environments, sections, math, etc.).
+- **Snippets**: shortcuts for common LaTeX constructs (environments, sections, math, etc.).
 
 ## Installation
 
