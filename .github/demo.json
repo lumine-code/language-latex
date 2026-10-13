@@ -1,0 +1,16 @@
+{
+  "title": "language-latex",
+  "description": "LaTeX syntax highlighting in the editor.",
+  "recordedOn": "2026-10-13",
+  "sourceRevision": "76c43e6fe56c1538f50e1fbaad25dbb36c42d59f",
+  "mode": "normal",
+  "fontSettings": "default",
+  "images": [
+    {
+      "file": "demo.png",
+      "label": "LaTeX syntax highlighting at the default editor font size.",
+      "width": 1100,
+      "height": 820
+    }
+  ]
+}

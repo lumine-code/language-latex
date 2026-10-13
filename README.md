@@ -12,6 +12,8 @@ LaTeX language support.
 - **Log grammar**: the central `language-log` package highlights LaTeX engine diagnostics and common warning levels.
 - **Snippets**: shortcuts for common LaTeX constructs (environments, sections, math, etc.).
 
+![LaTeX syntax highlighting at the default editor font size.](.github/demo.png)
+
 ## Installation
 
 To install `language-latex` search for it in the Install pane of the Lumine settings, or run the command `lumine --install lumine-code/language-latex`.
