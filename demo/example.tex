@@ -1,0 +1,91 @@
+% A LaTeX sample, kept idiomatic so it is worth opening in the editor.
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true]{hyperref}
+
+\newcommand{\pkg}[1]{\texttt{#1}}
+\renewcommand{\abstractname}{Summary}
+
+\title{A Sample Document}
+\author{Ada Lovelace \and Grace Hopper}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  A short abstract, with an inline formula $E = mc^2$ and a citation
+  \cite{lovelace1843}.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+\label{sec:intro}
+
+Text with \emph{emphasis}, \textbf{bold}, and the \pkg{amsmath} package.
+See Section~\ref{sec:results} and \href{https://example.com}{a link}.
+
+\subsection{Mathematics}
+
+\begin{equation}
+  \label{eq:euler}
+  e^{i\pi} + 1 = 0
+\end{equation}
+
+\[
+  \int_{0}^{\infty} e^{-x^2}\,\mathrm{d}x = \frac{\sqrt{\pi}}{2}
+\]
+
+\begin{align}
+  f(x) &= ax^2 + bx + c \\
+       &= a\left(x + \frac{b}{2a}\right)^2 + c - \frac{b^2}{4a}
+\end{align}
+
+\section{Results}
+\label{sec:results}
+
+\begin{itemize}
+  \item A bullet.
+  \item Another bullet.
+\end{itemize}
+
+\begin{enumerate}
+  \item Numbered.
+  \item Also numbered.
+\end{enumerate}
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{lrr}
+    \hline
+    Language & Files & Lines \\
+    \hline
+    \LaTeX{} & 12 & 3\,400 \\
+    BibTeX   &  1 &    120 \\
+    \hline
+  \end{tabular}
+  \caption{A table.}
+  \label{tab:counts}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.6\textwidth]{sample}
+  \caption{A figure.}
+\end{figure}
+
+\begin{verbatim}
+  Verbatim text: \not \a \command
+\end{verbatim}
+
+\bibliographystyle{plain}
+\bibliography{sample}
+
+\end{document}
