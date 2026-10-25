@@ -397,11 +397,11 @@
 ; COMMENTS
 ; ========
 
+(line_comment) @comment.line.percentage.latex
 [
-  (line_comment)
   (block_comment)
   (comment_environment)
-] @comment.line.percentage.latex
+] @comment.block.percentage.latex
 
 ((line_comment) @keyword.control.directive.latex
   (#match? @keyword.control.directive.latex "^%% !TeX"))
