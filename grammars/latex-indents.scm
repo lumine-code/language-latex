@@ -1,25 +1,13 @@
-; Indent inside environments
-(generic_environment
-  (begin) @indent
-  (#set! indent.matchIndentOf parent.startPosition))
+; Preserve the exact contents of multiline literals during explicit reindent.
+([(verbatim_environment) (comment) (block_comment)] @preserve
+  (#is? indent.reindent true)
+  (#is-not? indent.matchesCurrentRow startPosition)
+  (#set! indent.force true))
 
-(generic_environment
-  (end) @dedent
-  (#set! indent.matchIndentOf parent.startPosition))
+; Capture the command tokens rather than their whole name groups, so the
+; braces in \begin{...} and \end{...} balance normally on the same row.
+(begin "\\begin" @indent)
+(end "\\end" @dedent)
 
-; Indent inside math environments
-(math_environment
-  (begin) @indent
-  (#set! indent.matchIndentOf parent.startPosition))
-
-(math_environment
-  (end) @dedent
-  (#set! indent.matchIndentOf parent.startPosition))
-
-; Indent inside curly groups
-("{" @indent)
-("}" @dedent)
-
-; Indent inside bracket groups
-("[" @indent)
-("]" @dedent)
+["{" "["] @indent
+["}" "]"] @dedent
