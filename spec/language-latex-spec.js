@@ -50,7 +50,7 @@ describe("language-latex", () => {
     }
   });
 
-  it("highlights complete file paths containing brackets and hashes", async () => {
+  it("highlights complete file paths with consistent argument braces", async () => {
     const editor = await lumine.workspace.open("document.tex");
     const paths = [
       "../assets/sofi/[r] supps-4.png",
@@ -65,10 +65,17 @@ describe("language-latex", () => {
         String.raw`\includegraphics[frame,width=\textwidth,height=\textheight,scale=0.999,keepaspectratio]{${path}}`,
     );
     commands.push(
+      String.raw`\documentclass{[custom]#1}`,
+      String.raw`\usepackage{[first]#1,[second]#2}`,
       String.raw`\input{chapters/[draft]#1.tex}`,
       String.raw`\include{chapters/[draft]#1}`,
+      String.raw`\verbatiminput{examples/[draft]#1.txt}`,
       String.raw`\import{chapters/[draft]#1/}{[intro]#2.tex}`,
+      String.raw`\bibliographystyle{[custom]#1}`,
       String.raw`\bibliography{refs/[draft]#1,refs/[final]#2}`,
+      String.raw`\includesvg{figures/[draft]#1.svg}`,
+      String.raw`\includeinkscape{figures/[draft]#1.pdf_tex}`,
+      String.raw`\usetikzlibrary{[first]#1,[second]#2}`,
     );
     editor.setText([...commands, String.raw`\section{After includes}`].join("\n"));
     expect(await editor.whenGrammarSettled()).toBe(true);
@@ -78,11 +85,15 @@ describe("language-latex", () => {
       expect(editor.scopeDescriptorForBufferPosition([row, 1]).getScopesArray()).toContain(
         "keyword.control.import.latex",
       );
-      for (let column = command.indexOf("{") + 1; column < command.length - 1; column++) {
+      for (let column = command.indexOf("{"); column < command.length; column++) {
         const scopes = editor.scopeDescriptorForBufferPosition([row, column]).getScopesArray();
-        expect(scopes)
-          .withContext(command + " at " + column)
-          .toContain("string.other.path.latex");
+        if ("{}".includes(command[column])) {
+          expect(scopes.at(-1))
+            .withContext(`${command} at ${column}: ${scopes.join(", ")}`)
+            .toBe("punctuation.bracket.latex");
+        } else {
+          expect(scopes).toContain("string.other.path.latex");
+        }
         expect(scopes).not.toContain("variable.other.placeholder.latex");
       }
     }
@@ -103,6 +114,10 @@ describe("language-latex", () => {
       expect(editor.scopeDescriptorForBufferPosition([0, column]).getScopesArray()).toContain(
         "string.regexp.latex",
       );
+    }
+    for (const column of [start - 1, start + path.length]) {
+      const scopes = editor.scopeDescriptorForBufferPosition([0, column]).getScopesArray();
+      expect(scopes.at(-1)).toBe("punctuation.bracket.latex");
     }
   });
 
