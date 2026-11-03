@@ -29,8 +29,8 @@ SOFTWARE.
 
 ----- BEGIN THIRD-PARTY LICENSE: parser:lumine-code_tree-sitter-latex -----
 Source: https://github.com/lumine-code/tree-sitter-latex
-Commit: 070e15b85dd9e629935ff62a85a45fa99078b553
-Ref: 070e15b85dd9e629935ff62a85a45fa99078b553
+Commit: fecbca09f7b4eacc831aea89dc264c32d7711776
+Ref: fecbca09f7b4eacc831aea89dc264c32d7711776
 
 Original file: LICENSE
 

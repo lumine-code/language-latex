@@ -50,6 +50,62 @@ describe("language-latex", () => {
     }
   });
 
+  it("highlights complete file paths containing brackets and hashes", async () => {
+    const editor = await lumine.workspace.open("document.tex");
+    const paths = [
+      "../assets/sofi/[r] supps-4.png",
+      "../assets/sofi/[r] supps-#1.png",
+      "[figure].png",
+      "figure].png",
+      "figure[.png",
+      "#1.png",
+    ];
+    const commands = paths.map(
+      (path) =>
+        String.raw`\includegraphics[frame,width=\textwidth,height=\textheight,scale=0.999,keepaspectratio]{${path}}`,
+    );
+    commands.push(
+      String.raw`\input{chapters/[draft]#1.tex}`,
+      String.raw`\include{chapters/[draft]#1}`,
+      String.raw`\import{chapters/[draft]#1/}{[intro]#2.tex}`,
+      String.raw`\bibliography{refs/[draft]#1,refs/[final]#2}`,
+    );
+    editor.setText([...commands, String.raw`\section{After includes}`].join("\n"));
+    expect(await editor.whenGrammarSettled()).toBe(true);
+
+    for (let row = 0; row < commands.length; row++) {
+      const command = commands[row];
+      expect(editor.scopeDescriptorForBufferPosition([row, 1]).getScopesArray()).toContain(
+        "keyword.control.import.latex",
+      );
+      for (let column = command.indexOf("{") + 1; column < command.length - 1; column++) {
+        const scopes = editor.scopeDescriptorForBufferPosition([row, column]).getScopesArray();
+        expect(scopes)
+          .withContext(command + " at " + column)
+          .toContain("string.other.path.latex");
+        expect(scopes).not.toContain("variable.other.placeholder.latex");
+      }
+    }
+    expect(
+      editor.scopeDescriptorForBufferPosition([commands.length, 1]).getScopesArray(),
+    ).toContain("keyword.control.section.latex");
+  });
+
+  it("highlights bibliography resource patterns containing brackets and hashes", async () => {
+    const editor = await lumine.workspace.open("document.tex");
+    const path = "refs/[draft]#1*.bib";
+    const command = String.raw`\addbibresource[location=local]{${path}}`;
+    editor.setText(command);
+    expect(await editor.whenGrammarSettled()).toBe(true);
+
+    const start = command.indexOf("{") + 1;
+    for (let column = start; column < start + path.length; column++) {
+      expect(editor.scopeDescriptorForBufferPosition([0, column]).getScopesArray()).toContain(
+        "string.regexp.latex",
+      );
+    }
+  });
+
   it("highlights specialized counter commands", async () => {
     const editor = await lumine.workspace.open("document.tex");
     const commands = [

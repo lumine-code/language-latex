@@ -10,7 +10,7 @@
     "start": "% "
   },
   "treeSitter": {
-    "parserSource": "github:lumine-code/tree-sitter-latex#070e15b85dd9e629935ff62a85a45fa99078b553",
+    "parserSource": "github:lumine-code/tree-sitter-latex#fecbca09f7b4eacc831aea89dc264c32d7711776",
     "wasmBuildTool": "tree-sitter-cli#v0.27.1",
     "grammar": "latex.wasm",
     "highlightsQuery": "latex-highlights.scm",
