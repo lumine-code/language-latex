@@ -163,8 +163,12 @@
   number: (_) @markup.underline.link.label.latex)
 
 (citation
-  command: _ @keyword.control.citation.latex
-  keys: (curly_group_text_list) @markup.underline.link.citation.latex)
+  command: _ @keyword.control.citation.latex)
+
+; Text decoration propagates to child tokens, so leave braces and commas out.
+(citation
+  keys: (curly_group_text_list
+    (text) @markup.underline.link.citation.latex))
 
 (hyperlink
   command: _ @support.function.latex

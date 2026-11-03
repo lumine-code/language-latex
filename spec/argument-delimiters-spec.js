@@ -106,6 +106,29 @@ describe("LaTeX semantic argument delimiters", () => {
       ["first:2007", "second_2020", "third-key"],
     );
     await expectArgumentContents(String.raw`\cite{}`, "markup.underline.link.citation.latex", []);
+    expect(scopesAt(1)).toContain("keyword.control.citation.latex");
+  });
+
+  it("keeps citation braces and list separators outside the underlined key ranges", async () => {
+    const scope = "markup.underline.link.citation.latex";
+    for (const [source, keys] of [
+      [String.raw`\cite{roz_kol_2018}`, ["roz_kol_2018"]],
+      [
+        String.raw`\cite{first:2007,second_2020,third-key}`,
+        ["first:2007", "second_2020", "third-key"],
+      ],
+    ]) {
+      const rendered = await expectArgumentContents(source, scope, keys);
+      for (let index = 0; index < source.length; index++) {
+        if (!"{},".includes(source[index])) continue;
+        expect(scopesAt(index))
+          .withContext(source + " at " + index)
+          .not.toContain(scope);
+        expect(rendered[index])
+          .withContext(source + " rendered scopes at " + index)
+          .not.toContain(scope);
+      }
+    }
   });
 
   it("keeps command and environment argument counts separate from brackets", async () => {
@@ -124,6 +147,30 @@ describe("LaTeX semantic argument delimiters", () => {
       [String.raw`\crefrange{fig:first}{fig:last}`, ["fig:first", "fig:last"]],
     ]) {
       await expectArgumentContents(source, "markup.underline.link.label.latex", names);
+    }
+  });
+
+  it("keeps macro placeholders inside complete label arguments", async () => {
+    const source = String.raw`\newcommand{\labele}[1]{\label{e:#1}}`;
+    const scope = "markup.underline.link.label.latex";
+    const rendered = await expectArgumentContents(source, scope, ["e:#1"]);
+    const tree = editor.languageMode.tree.rootNode;
+    const labels = tree.descendantsOfType("label_definition");
+    expect(labels.length).toBe(1);
+    expect(labels[0]?.childForFieldName("name")?.text).toBe("{e:#1}");
+    const parameter = source.indexOf("#1");
+    for (const index of [parameter, parameter + 1]) {
+      expect(scopesAt(index)).toContain("variable.other.placeholder.latex");
+      expect(rendered[index]).toContain("variable.other.placeholder.latex");
+    }
+    for (let index = 0; index < source.length; index++) {
+      if (!"{}".includes(source[index])) continue;
+      expect(scopesAt(index))
+        .withContext(source + " at " + index)
+        .not.toContain(scope);
+      expect(rendered[index])
+        .withContext(source + " rendered scopes at " + index)
+        .not.toContain(scope);
     }
   });
 
