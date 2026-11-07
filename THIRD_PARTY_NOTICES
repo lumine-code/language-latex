@@ -32,6 +32,9 @@ Source: https://github.com/lumine-code/tree-sitter-latex
 Commit: e56f44b51a036fff902f4285f9ab0fd8099c7614
 Ref: e56f44b51a036fff902f4285f9ab0fd8099c7614
 
+Parser source: github:lumine-code/tree-sitter-latex#e56f44b51a036fff902f4285f9ab0fd8099c7614
+Resolved commit: e56f44b51a036fff902f4285f9ab0fd8099c7614
+
 Original file: LICENSE
 
 MIT License

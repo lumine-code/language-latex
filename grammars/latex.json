@@ -11,7 +11,7 @@
   },
   "treeSitter": {
     "parserSource": "github:lumine-code/tree-sitter-latex#e56f44b51a036fff902f4285f9ab0fd8099c7614",
-    "wasmBuildTool": "tree-sitter-cli#v0.27.1",
+    "wasmBuildTool": "tree-sitter-cli#v0.27.2",
     "grammar": "latex.wasm",
     "highlightsQuery": "latex-highlights.scm",
     "foldsQuery": "latex-folds.scm",
